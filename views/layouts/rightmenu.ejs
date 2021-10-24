@@ -1,0 +1,58 @@
+
+
+
+
+
+<div class="row">
+
+      <% if(products.length > 0) { %>
+
+      <% products.forEach((product) => { %>
+      
+            <div class="col-md-4">
+                  <div class="card mb-4 b-shadow card-my-size" >
+                        <img src="/img/<%= product.imageUrl %> " 
+                              class="card-img-top" alt="<%= product.imageUrl %>">
+                        <div class="card-body">
+                              <h5 class="card-title">
+                                    <a href="/products/<%= product._id %> "><%= product.name %></a>
+                                    </h5>
+                        <p class="card-text">
+                              <small style="font-weight: bolder;">
+                                    <i class="fas fa-lira-sign"></i>  <%= product.price %> 
+                              </small>   
+                              
+                        </p>
+            
+                        </div>
+            
+                        <div class="card-footer text-center">
+                              
+                              <a href="/products/<%= product._id %> " class="btn btn-dark btn-sm ">
+                                    <i class="fas fa-angle-double-right"></i> Details
+                              </a>
+
+                              <form action="/cart" method="POST">
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken%>">
+                                    <input type="hidden" name="productId" value="<%= product._id%>">
+
+                                    <button   class="btn btn-outline-success btn-sm" style="margin-left: 3px;" type="submit">
+                                          <i class="fas fa-cart-plus"></i>  Add to Cart
+                                    </button>
+
+                              </form>
+
+                        </div>
+                  </div>
+            
+            </div>
+            
+            <%     }) %>
+      
+      <%  }  else { %> 
+            <div class="col-md-4 mt-4">
+                  <h2>There is no product</h2>
+            </div>
+
+      <%  } %>
+</div>

@@ -1,0 +1,32 @@
+.pt-100 {
+      padding-top:1.8rem;
+}
+
+
+.b-shadow {
+      margin-top:.8rem;
+      -webkit-box-shadow: 0px 0px 15px 8px rgba(0,0,0,0.55);
+      box-shadow: 0px 0px 4px 4px rgba(0,0,0,0.55);
+}
+
+
+.carousel-inner{
+      height:20rem;
+      margin-bottom:1rem;
+
+}
+
+.card-my-size {
+      height:28rem;
+      transition: all .6s ease-in-out;
+}
+
+.card-my-size:hover {
+      transform: scale(1.02);
+}
+
+.bg-blue-color {
+      background-color: #c3dfee;
+}
+
+

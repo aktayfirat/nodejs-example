@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../layouts/head.ejs') %>
+</head>
+
+<body>
+
+<%- include('../layouts/nav.ejs') %>
+
+<div class="container pt-100">
+
+    <% if (my_action !== 'undefined' &&  my_action ==='create')  {%>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Başarılı!</strong> Category Oluşturuldu
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+    <% } %>
+
+
+    <% if (my_action !== 'undefined' &&  my_action ==='edit')  {%>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Başarılı!</strong> Category Güncellendi
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+    <% } %>
+
+    <% if (my_action !== 'undefined' &&  my_action ==='delete')  {%>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Category Silindi!</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+    <% } %>
+
+
+
+    <div class="row mt-3">
+
+        <% if (categories.length > 0)  {%>
+
+            <table class="table table-bordered">
+
+                <thead>
+                <tr>
+                    <th class="bg-light">Name</th>
+                    <th class="bg-light">Description</th>
+                    <th style="width:13rem;"> </th>
+
+                </tr>
+
+                </thead>
+
+                <tbody>
+
+                <% categories.forEach((category)=> { %>
+
+                    <tr>
+
+                        <td >
+
+                            <a href="/categories/<%= category._id %>" style="display: block">
+                            <strong>  <%= category.name %> <span style="font-size: 1.3rem;color:black"  class="offset-1">
+
+                                    <span class="badge rounded-pill bg-warning text-dark"> <%= category.num_of_products %></span>
+
+                                </span></strong>
+
+
+                            </a>
+                        </td>
+
+                        <td > <%= category.description %> </td>
+
+                        <td>
+                            <a href="/admin/categories/<%= category._id %> " class="btn  btn-primary btn-sm " style="box-shadow: 0 0.375em 0 black;">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+
+                            <form action="/admin/delete-category" method="POST">
+                                <input type="hidden" name="_csrf" value="<%= csrfToken%>">
+                                <input type="hidden" name="categoryid" value="<%= category._id %>">
+                                <button type="submit" class="btn ms-3 btn-danger btn-sm" style="box-shadow: 0 0.375em 0 black;">
+                                    <i class="fas fa-trash-alt"></i> Delete
+                                </button>
+                            </form>
+
+
+                        </td>
+
+                    </tr>
+                <% }) %>
+
+
+                </tbody>
+
+            </table>
+
+        <% } else { %>
+
+            <h1>Hiç Ürün yok...</h1>
+
+        <% } %>
+
+    </div>
+</div>
+
+
+
+<%- include ('../layouts/footer.ejs') %>

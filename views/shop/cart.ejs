@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <%- include('../layouts/head.ejs') %>
+</head>
+
+<body>
+
+<%- include('../layouts/nav.ejs') %>
+
+<div class="container pt-100">
+
+
+
+
+      <div class="row mt-3">
+
+            <% if (products.length > 0)  {%>
+
+                  <table class="table table-bordered">
+
+                        <thead>
+                        <tr>
+                              <th style="width:6.2rem;">Image</th>
+                              <th>Product Name</th>
+                              <th style="width:9.8rem;">Price</th>
+                              <th style="width:15rem;">Amount of Product Added &ensp;<i class="fas fa-luggage-cart"></i></th>
+                              <th style="width:13rem;"> </th>
+                        </tr>
+
+                        </thead>
+
+                        <tbody>
+                        <% products.forEach((product)=> { %>
+
+                              <tr class="text-center">
+                                    <td>
+                                          <img src="/img/<%= product.productId.imageUrl %> "  class="card-img-top" style="width:80px;">
+
+                                    </td>
+
+                                    <td> <%= product.productId.name %> </td>
+                                    <td> <%= product.productId.price %> <i class="fas fa-lira-sign"></i> </td>
+                                    <td >
+
+                                          <span class="p-3 rounded bg-warning" style="font-weight: bolder;color:black;border: 1px solid black;position:absolute;" >
+                                                 <%= product.quantity %>
+                                          </span>
+                                    </td>
+
+                                    <td>
+                                          <form action="/delete-cartitem" method="POST">
+                                                <input type="hidden" name="_csrf" value="<%= csrfToken%>">
+                                                <input type="hidden" name="productid" value="<%= product.productId._id %>">
+                                                <button type="submit" class="btn ms-3 btn-danger btn-sm" style="box-shadow: 0 0.375em 0 black;">
+                                                      <i class="fas fa-trash-alt"></i> Delete
+                                                </button>
+                                          </form>
+                                    </td>
+
+
+                                    </td>
+                              </tr>
+                        <% }) %>
+
+
+                        </tbody>
+
+                        <tfoot>
+                              <td colspan="4"></td>
+                              <% let total=0 %>
+                              <% products.forEach((product) => { %>
+                                    <% product %>
+                                    <% total += (product.productId.price * product.quantity) %>
+                              <% })%>
+                              <td class="text-center bolder">Total : <%=  total %> TL</td>
+                        </tfoot>
+
+
+                  </table>
+                    <div class="text-center">
+                          <a href="/" class="btn btn-outline-info">Continue the shopping</a>
+                          <form action="/create-order" method="POST">
+                                <input type="hidden" name="_csrf" value="<%= csrfToken%>">
+                                <button href="/checkout" class="btn btn-primary ms-2">Complete the shopping</button>
+                          </form>
+                    </div>
+            <% } else { %>
+
+                  <h1>There is no a product...</h1>
+
+            <% } %>
+
+      </div>
+</div>
+
+
+
+
+<%- include ('../layouts/footer.ejs') %>

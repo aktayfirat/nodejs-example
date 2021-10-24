@@ -1,0 +1,174 @@
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3">
+      <div class="container-fluid">
+            <% let name='Shopping' %> 
+            <a class="navbar-brand" href="/">
+
+                  <img src="/img/Uiconstock-Shopping-Cart-Shoppingcart-01.ico"   height="100" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                  aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                  <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin-left: 2rem;">
+                        <li class="nav-item">
+
+                              <a 
+                              <% if(path==='/') { %> 
+                              class="nav-link active" 
+                              
+                              <% } else { %> 
+                                    class="nav-link" 
+                               <% } %>      
+
+                              aria-current="page" href="/">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                              <a 
+                              <% if( path==='/products') { %>
+                                    class="nav-link active" 
+                                    
+                              <% } else { %> 
+                                    class="nav-link" 
+                              <% } %>      
+      
+                              href="/products">Products</a>
+                        </li>
+
+
+                        <!-- if user login -->
+
+                   <% if(isAuthenticated) { %>
+
+                        <li class="nav-item">
+                              <a
+                              <% if(path==='/cart') { %>
+                                    class="nav-link active"
+
+                              <% } else { %>
+                                    class="nav-link"
+                              <% } %>
+
+                              href="/cart">Cart</a>
+                        </li>
+
+                        <li class="nav-item">
+                              <a
+                              <% if(path==='/orders') { %>
+                                    class="nav-link active"
+
+                              <% } else { %>
+                                    class="nav-link"
+                              <% } %>
+
+                              href="/orders">Orders</a>
+                        </li>
+
+                        <% if (isAdmin) { %>
+                              <li class="nav-item">
+                                    <a
+
+                                    <% if(path==='/admin/add-product') { %>
+                                    class="nav-link active"
+
+                                    <% } else { %>
+                                          class="nav-link"
+                                    <% } %>
+                                    href="/admin/add-product">Add Product</a>
+                              </li>
+
+                        <li class="nav-item">
+                              <a
+
+                              <% if(path==='/admin/products') { %>
+                              class="nav-link active"
+
+                              <% } else { %>
+                                    class="nav-link"
+                              <% } %>
+                              href="/admin/products">Admin Products</a>
+                        </li>
+
+                        <li class="nav-item">
+                              <a
+
+                              <% if(path==='/admin/add-category') { %>
+                                    class="nav-link active"
+
+                              <% } else { %>
+                                    class="nav-link"
+                                      <% } %>
+                                    href="/admin/add-category">Add Category</a>
+                        </li>
+
+                        <li class="nav-item">
+                              <a
+
+                              <% if(path==='/admin/categories') { %>
+                                    class="nav-link active"
+
+                              <% } else { %>
+                                    class="nav-link"
+                                      <% } %>
+                                    href="/admin/categories">Categories</a>
+                        </li>
+                               <% } %>
+
+
+                    <% } %>
+
+                  </ul>
+
+
+
+                  <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="margin-right: 2rem;">
+
+                        <% if ( isAuthenticated ) { %>
+
+
+
+                                    <li class="nav-item bg-primary me-2 col-12 text-center text-white rounded">
+                                          <a class="nav-link " style="font-weight: bolder"
+                                                aria-current="page" href="/logout">
+                                                Logout <%= user.name%> <i class="fas fa-user-times"> </i>
+                                          </a>
+                                    </li>
+
+                        <% } else { %>
+                              <li class="nav-item bg-primary me-2 col-6 text-center text-white rounded">
+                                          <a
+                                          <% if(path==='/login') { %>
+                                                class="nav-link active" style="font-weight: bolder"
+                                          <% } else {%>
+                                                class="nav-link"
+                                                  <%}%>
+                                                aria-current="page" href="/login">
+                                                Login <i class="fas fa-sign-in-alt"></i>
+                                          </a>
+                                    </li>
+
+                              <li class="nav-item bg-success col-7 text-center text-white rounded">
+                                    <a
+                                    <% if(path==='/register') { %>
+                                          class="nav-link active" style="font-weight: bolder"
+                                    <% } else {%>
+                                          class="nav-link"
+                                      <%}%>
+
+                                            href="/register">
+                                          Register <i class="fas fa-user-plus"></i>
+                                    </a>
+                              </li>
+
+
+                        <%  } %>
+                  </ul>
+
+            </div>
+      </div>
+</nav>

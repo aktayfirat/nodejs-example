@@ -1,0 +1,31 @@
+<div class="list-group">
+
+
+
+    <% if (categories.length >= 0) { %>
+        <% categories.forEach((category) => {    %>
+
+            <a href="/categories/<%= category._id %>"
+
+                        class="list-group-item">
+
+
+                 <%= category.name %>  <span class="text-danger offset-1 ">
+                    <span class="badge rounded-pill bg-primary"> <%= category.num_of_products %></span>
+
+
+                </span>
+
+            </a>
+
+
+
+
+        <% }) %>
+
+
+    <% } else  { %>
+        <h1>There is no category</h1>
+  <% }%>
+
+</div>
